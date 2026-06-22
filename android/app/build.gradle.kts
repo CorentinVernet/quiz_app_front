@@ -32,6 +32,10 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    lint {
+        lintConfig = file("lint.xml")
+    }
 }
 
 kotlin {
