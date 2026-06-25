@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_front/pages/choose_first_player_page.dart';
+import 'package:quiz_app_front/pages/main_page.dart';
 import 'package:quiz_app_front/pages/matchmaking_page.dart';
 import '../widgets/fade_text.dart';
 
@@ -11,6 +12,26 @@ class PlaySessionPage extends StatelessWidget {
     return PopScope(
       canPop: false,
       child: Scaffold(
+        bottomNavigationBar: Container(
+          margin: EdgeInsets.only(bottom: 20, left: 20),
+          child: InkWell(
+            child: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: 2),
+                  child: Icon(Icons.keyboard_arrow_left),
+                ),
+                Text("Revenir a l'accueil", style: TextStyle(fontSize: 25)),
+              ],
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MainPage()),
+              );
+            },
+          ),
+        ),
         body: Center(
           child: Column(
             children: [
