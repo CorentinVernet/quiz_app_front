@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 
 class GamePage extends StatefulWidget {
   final String roundName;
-  final int roundNumber;
 
-  const GamePage({super.key, required this.roundName, this.roundNumber = 0});
+  const GamePage({super.key, required this.roundName});
 
   @override
   State<StatefulWidget> createState() => GamePageState();
@@ -14,6 +13,8 @@ class GamePage extends StatefulWidget {
 
 class GamePageState extends State<GamePage> {
   int currentQuestion = 0;
+  int greenAnswerIndex = -1;
+  int redAnswerIndex = -1;
 
   final questions = <Map<String, Object>>[
     {
@@ -72,6 +73,44 @@ class GamePageState extends State<GamePage> {
     },
   ];
 
+  void onAnswerClicked(int cardIndex) {
+    int correctAnswerIndex = questions[currentQuestion]["answer"] as int;
+    if (correctAnswerIndex == cardIndex) {
+      setState(() {
+        greenAnswerIndex = cardIndex;
+        // This improves code robustness.
+        // Red aswer should aleready equal -1 here.
+        redAnswerIndex = -1;
+      });
+    } else {
+      setState(() {
+        redAnswerIndex = cardIndex;
+        greenAnswerIndex = correctAnswerIndex;
+      });
+    }
+
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        if (currentQuestion < 4) {
+          currentQuestion++;
+        } else {}
+        redAnswerIndex = -1;
+        greenAnswerIndex = -1;
+      });
+    });
+  }
+
+  Color calculateCardColor(int cardIndex) => greenAnswerIndex == cardIndex
+      ? Colors.green
+      : redAnswerIndex == cardIndex
+      ? Colors.red
+      : Colors.white70;
+
+  Color calculateAnswerTextColor(int cardIndex) {
+    Color cardColor = calculateCardColor(cardIndex);
+    return cardColor != Colors.white70 ? Colors.white : Colors.black;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +124,7 @@ class GamePageState extends State<GamePage> {
             Container(
               margin: EdgeInsets.only(top: 20, bottom: 100),
               child: Text(
-                (questions[widget.roundNumber]["question"] as String),
+                (questions[currentQuestion]["question"] as String),
                 style: TextStyle(fontSize: 35),
                 textAlign: TextAlign.center,
               ),
@@ -103,8 +142,11 @@ class GamePageState extends State<GamePage> {
                         width: 200,
                         height: 200,
                         child: Card(
+                          color: calculateCardColor(0),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              onAnswerClicked(0);
+                            },
                             child: Container(
                               alignment: Alignment.center,
                               child: Padding(
@@ -112,10 +154,13 @@ class GamePageState extends State<GamePage> {
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 6,
-                                  (questions[widget.roundNumber]["options"]
+                                  (questions[currentQuestion]["options"]
                                       as List<String>)[0],
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: calculateAnswerTextColor(0),
+                                  ),
                                 ),
                               ),
                             ),
@@ -126,8 +171,11 @@ class GamePageState extends State<GamePage> {
                         width: 200,
                         height: 200,
                         child: Card(
+                          color: calculateCardColor(1),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              onAnswerClicked(1);
+                            },
                             child: Container(
                               alignment: Alignment.center,
                               child: Padding(
@@ -135,10 +183,13 @@ class GamePageState extends State<GamePage> {
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 6,
-                                  (questions[widget.roundNumber]["options"]
+                                  (questions[currentQuestion]["options"]
                                       as List<String>)[1],
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: calculateAnswerTextColor(1),
+                                  ),
                                 ),
                               ),
                             ),
@@ -156,8 +207,11 @@ class GamePageState extends State<GamePage> {
                         width: 200,
                         height: 200,
                         child: Card(
+                          color: calculateCardColor(2),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              onAnswerClicked(2);
+                            },
                             child: Container(
                               alignment: Alignment.center,
                               child: Padding(
@@ -165,10 +219,13 @@ class GamePageState extends State<GamePage> {
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 6,
-                                  (questions[widget.roundNumber]["options"]
+                                  (questions[currentQuestion]["options"]
                                       as List<String>)[2],
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: calculateAnswerTextColor(2),
+                                  ),
                                 ),
                               ),
                             ),
@@ -179,8 +236,11 @@ class GamePageState extends State<GamePage> {
                         width: 200,
                         height: 200,
                         child: Card(
+                          color: calculateCardColor(3),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              onAnswerClicked(3);
+                            },
                             child: Container(
                               alignment: Alignment.center,
                               child: Padding(
@@ -188,10 +248,13 @@ class GamePageState extends State<GamePage> {
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 6,
-                                  (questions[widget.roundNumber]["options"]
+                                  (questions[currentQuestion]["options"]
                                       as List<String>)[3],
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: calculateAnswerTextColor(3),
+                                  ),
                                 ),
                               ),
                             ),
