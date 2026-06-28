@@ -5,5 +5,11 @@
     },
     "matchmaking_page": {
         "searching_game": "Recherche de partie..."
+    },
+    "accept_player_page": {
+        "reject_opponent": "Refuser",
+        "accept_opponent": "Accepter",
+        "found_opponent": "Partie trouvée !",
+        "come_back_to_home_page": "Revenir a l'accueil"
     }
 }

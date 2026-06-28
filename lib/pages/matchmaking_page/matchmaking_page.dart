@@ -1,7 +1,7 @@
 import 'dart:async';
-import '../accept_player_page.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app_front/main.dart';
+import '../accept_player_page/accept_player_page.dart';
 import 'package:quiz_app_front/pages/matchmaking_page/widgets/search_label.dart';
 import 'package:quiz_app_front/pages/matchmaking_page/widgets/loading_animation.dart';
 

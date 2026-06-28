@@ -42,6 +42,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	// Translations
 	late final Translations$home_page$fr home_page = Translations$home_page$fr._(_root);
 	late final Translations$matchmaking_page$fr matchmaking_page = Translations$matchmaking_page$fr._(_root);
+	late final Translations$accept_player_page$fr accept_player_page = Translations$accept_player_page$fr._(_root);
 }
 
 // Path: home_page
@@ -71,6 +72,27 @@ class Translations$matchmaking_page$fr {
 	String get searching_game => 'Recherche de partie...';
 }
 
+// Path: accept_player_page
+class Translations$accept_player_page$fr {
+	Translations$accept_player_page$fr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Refuser'
+	String get reject_opponent => 'Refuser';
+
+	/// fr: 'Accepter'
+	String get accept_opponent => 'Accepter';
+
+	/// fr: 'Partie trouvée !'
+	String get found_opponent => 'Partie trouvée !';
+
+	/// fr: 'Revenir a l'accueil'
+	String get come_back_to_home_page => 'Revenir a l\'accueil';
+}
+
 /// The flat map containing all translations for locale <fr>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -82,6 +104,10 @@ extension on Translations {
 			'home_page.new_game' => 'Nouvelle partie',
 			'home_page.run_game' => 'Lancer une nouvelle partie',
 			'matchmaking_page.searching_game' => 'Recherche de partie...',
+			'accept_player_page.reject_opponent' => 'Refuser',
+			'accept_player_page.accept_opponent' => 'Accepter',
+			'accept_player_page.found_opponent' => 'Partie trouvée !',
+			'accept_player_page.come_back_to_home_page' => 'Revenir a l\'accueil',
 			_ => null,
 		};
 	}
