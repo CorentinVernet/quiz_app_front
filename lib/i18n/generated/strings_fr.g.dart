@@ -46,6 +46,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$settings_page$fr settings_page = Translations$settings_page$fr._(_root);
 	late final Translations$sing_in_page$fr sing_in_page = Translations$sing_in_page$fr._(_root);
 	late final Translations$sign_up_page$fr sign_up_page = Translations$sign_up_page$fr._(_root);
+	late final Translations$waiting_for_theme_page$fr waiting_for_theme_page = Translations$waiting_for_theme_page$fr._(_root);
 	late final Translations$forgot_password_page$fr forgot_password_page = Translations$forgot_password_page$fr._(_root);
 	late final Translations$matchmaking_page$fr matchmaking_page = Translations$matchmaking_page$fr._(_root);
 	late final Translations$accept_player_page$fr accept_player_page = Translations$accept_player_page$fr._(_root);
@@ -184,6 +185,18 @@ class Translations$sign_up_page$fr {
 
 	/// fr: 'Vous avez déjà un compte ?'
 	String get already_have_account_label => 'Vous avez déjà un compte ?';
+}
+
+// Path: waiting_for_theme_page
+class Translations$waiting_for_theme_page$fr {
+	Translations$waiting_for_theme_page$fr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'L'adversaire choisit un thème...'
+	String get waiting_for_theme_label => 'L\'adversaire choisit un thème...';
 }
 
 // Path: forgot_password_page
@@ -435,6 +448,7 @@ extension on Translations {
 			'sign_up_page.confirm_your_password' => 'Confirmez votre mot de passe',
 			'sign_up_page.confirm_password_label' => 'Confirmation du mot de passe:',
 			'sign_up_page.already_have_account_label' => 'Vous avez déjà un compte ?',
+			'waiting_for_theme_page.waiting_for_theme_label' => 'L\'adversaire choisit un thème...',
 			'forgot_password_page.send_button_label' => 'Envoyer',
 			'forgot_password_page.email_field_label' => 'Email:',
 			'forgot_password_page.enter_email' => 'Entrez votre Email',

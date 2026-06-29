@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quiz_app_front/main.dart';
+import "../../i18n/generated/strings.g.dart";
 import 'package:quiz_app_front/pages/game_page/game_page.dart';
+import 'package:quiz_app_front/pages/waiting_for_theme_page/widgets/waiting_icon.dart';
+import 'package:quiz_app_front/pages/waiting_for_theme_page/widgets/waiting_for_theme_label.dart';
 
 class WaitingForThemePage extends StatefulWidget {
   const WaitingForThemePage({super.key});
@@ -17,7 +19,10 @@ class WaitingForThemePageState extends State<WaitingForThemePage>
 
   Timer _setTimer() => Timer(const Duration(seconds: 3), () {
     navigatorKey.currentState?.push(
-      MaterialPageRoute(builder: (_) => GamePage(roundName: "Première Manche")),
+      MaterialPageRoute(
+        builder: (_) =>
+            GamePage(roundName: t.shared.round_names.first_round_name),
+      ),
     );
   });
 
@@ -49,24 +54,7 @@ class WaitingForThemePageState extends State<WaitingForThemePage>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 200, bottom: 150),
-              child: Text(
-                "L'adversaire choisi un thème...",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 40),
-              ),
-            ),
-            Container(
-              child: LoadingAnimationWidget.waveDots(
-                color: Colors.black,
-                size: 200,
-              ),
-            ),
-          ],
-        ),
+        child: Column(children: [WaitingForThemeLabel(), WaitingIcon()]),
       ),
     );
   }

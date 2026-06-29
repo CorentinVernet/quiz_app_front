@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "../../../widgets/fade_button.dart";
 import "../../../i18n/generated/strings.g.dart";
 import "package:quiz_app_front/pages/choose_theme_page/choose_theme_page.dart";
-import "package:quiz_app_front/pages/waiting_for_theme_page.dart";
+import "package:quiz_app_front/pages/waiting_for_theme_page/waiting_for_theme_page.dart";
 
 class StartGameButton extends StatelessWidget {
   final int firstPlayer;

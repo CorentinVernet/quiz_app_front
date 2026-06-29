@@ -47,6 +47,9 @@
         "confirm_password_label": "Confirmation du mot de passe:",
         "already_have_account_label": "Vous avez déjà un compte ?"
     },
+    "waiting_for_theme_page": {
+        "waiting_for_theme_label": "L'adversaire choisit un thème..."
+    },
     "forgot_password_page": {
         "send_button_label": "Envoyer",
         "email_field_label": "Email:",
