@@ -43,6 +43,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$home_page$fr home_page = Translations$home_page$fr._(_root);
 	late final Translations$matchmaking_page$fr matchmaking_page = Translations$matchmaking_page$fr._(_root);
 	late final Translations$accept_player_page$fr accept_player_page = Translations$accept_player_page$fr._(_root);
+	late final Translations$between_rounds_page$fr between_rounds_page = Translations$between_rounds_page$fr._(_root);
 }
 
 // Path: home_page
@@ -93,6 +94,18 @@ class Translations$accept_player_page$fr {
 	String get come_back_to_home_page => 'Revenir a l\'accueil';
 }
 
+// Path: between_rounds_page
+class Translations$between_rounds_page$fr {
+	Translations$between_rounds_page$fr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Statut des manches'
+	String get round_status => 'Statut des manches';
+}
+
 /// The flat map containing all translations for locale <fr>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -108,6 +121,7 @@ extension on Translations {
 			'accept_player_page.accept_opponent' => 'Accepter',
 			'accept_player_page.found_opponent' => 'Partie trouvée !',
 			'accept_player_page.come_back_to_home_page' => 'Revenir a l\'accueil',
+			'between_rounds_page.round_status' => 'Statut des manches',
 			_ => null,
 		};
 	}

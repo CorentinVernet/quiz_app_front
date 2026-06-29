@@ -1,7 +1,7 @@
 //import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:quiz_app_front/pages/between_rounds_page.dart';
+import 'package:quiz_app_front/pages/between_rounds_page/between_rounds_page.dart';
 
 class GamePage extends StatefulWidget {
   final String roundName;

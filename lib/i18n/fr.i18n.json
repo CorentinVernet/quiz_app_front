@@ -11,5 +11,8 @@
         "accept_opponent": "Accepter",
         "found_opponent": "Partie trouvée !",
         "come_back_to_home_page": "Revenir a l'accueil"
+    },
+    "between_rounds_page": {
+        "round_status": "Statut des manches"
     }
 }
