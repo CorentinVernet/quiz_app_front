@@ -269,6 +269,12 @@ class Translations$between_rounds_page$fr {
 
 	// Translations
 
+	/// fr: 'Prochaine Manche'
+	String get next_round_label => 'Prochaine Manche';
+
+	/// fr: 'Terminer la partie'
+	String get end_game_label => 'Terminer la partie';
+
 	/// fr: 'Statut des manches'
 	String get round_status => 'Statut des manches';
 }
@@ -571,6 +577,8 @@ extension on Translations {
 			'accept_player_page.accept_opponent' => 'Accepter',
 			'accept_player_page.found_opponent' => 'Partie trouvée !',
 			'accept_player_page.come_back_to_home_page' => 'Revenir a l\'accueil',
+			'between_rounds_page.next_round_label' => 'Prochaine Manche',
+			'between_rounds_page.end_game_label' => 'Terminer la partie',
 			'between_rounds_page.round_status' => 'Statut des manches',
 			'choose_first_player_page.vs_label' => 'VS',
 			'choose_first_player_page.me_label' => 'Moi',

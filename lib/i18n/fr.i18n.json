@@ -92,6 +92,8 @@
     "come_back_to_home_page": "Revenir a l'accueil"
   },
   "between_rounds_page": {
+    "next_round_label": "Prochaine Manche",
+    "end_game_label": "Terminer la partie",
     "round_status": "Statut des manches"
   },
   "choose_first_player_page": {

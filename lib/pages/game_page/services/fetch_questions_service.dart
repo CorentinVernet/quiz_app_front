@@ -11,7 +11,7 @@ Future<List<Map<String, dynamic>>> fetchQuestionsService(Theme theme) async {
       ? "physics_chemistry"
       : theme.value.name;
   final jsonString = await rootBundle.loadString(
-    '../../shared_assets/quetsions/${themeName}_fr.json',
+    '../../shared_assets/questions/${themeName}_fr.json',
   );
   return (jsonDecode(jsonString) as List).cast<Map<String, dynamic>>();
 }

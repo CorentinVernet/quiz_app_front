@@ -1,7 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Theme;
+import 'package:quiz_app_front/i18n/generated/strings.g.dart';
+import 'package:quiz_app_front/pages/between_rounds_page/widgets/next_round_button.dart';
 import 'package:quiz_app_front/pages/choose_theme_page/choose_theme_page.dart';
+import 'package:quiz_app_front/pages/end_game_page/end_game_page.dart';
 import 'package:quiz_app_front/pages/matchmaking_page/models/player.dart';
 import 'package:quiz_app_front/pages/waiting_for_theme_page/waiting_for_theme_page.dart';
+
+import '../../shared_models/theme.dart';
 
 class CardColors {
   final Color textColor;
@@ -14,6 +19,7 @@ class CardColors {
 }
 
 class BetweenRoundsPage extends StatefulWidget {
+  final Theme theme;
   final int roundIndex;
   final Player opponent;
   final int myCorrectAnswers;
@@ -22,6 +28,7 @@ class BetweenRoundsPage extends StatefulWidget {
 
   const BetweenRoundsPage({
     super.key,
+    required this.theme,
     required this.opponent,
     required this.roundIndex,
     required this.myCorrectAnswers,
@@ -34,22 +41,40 @@ class BetweenRoundsPage extends StatefulWidget {
 }
 
 class BetweenRoundsPageState extends State<BetweenRoundsPage> with RouteAware {
-  final status = <Map<String, Object>>[
-    {
-      "name": "1",
-      "winners": ["opponent"],
-    },
-    {
-      "name": "2",
-      "winners": ["me", "opponent"],
-    },
-    {
-      "name": "3",
-      "winners": ["me"],
-    },
-    {"name": "4", "winners": []},
-    {"name": "5", "winners": []},
-  ];
+  final winnerHistory = <Map<String, Object>>[];
+
+  @override
+  initState() {
+    super.initState();
+    if (widget.myCorrectAnswers == widget.opponentCorrectAnswers) {
+      winnerHistory.add({
+        "roundIndex": widget.roundIndex,
+        "winners": ["me", "opponent"],
+      });
+    } else {
+      if (widget.myCorrectAnswers > widget.opponentCorrectAnswers) {
+        winnerHistory.add({
+          "roundIndex": widget.roundIndex,
+          "winners": ["me"],
+        });
+      } else {
+        winnerHistory.add({
+          "roundIndex": widget.roundIndex,
+          "winners": ["opponent"],
+        });
+      }
+    }
+    _updateOpponentProfile();
+  }
+
+  void _updateOpponentProfile() {
+    widget.opponent.addAccuracyEntryToATheme(
+      widget.theme,
+      widget.opponentCorrectAnswers / 5,
+    );
+    widget.opponent.updateAverageAccuracyPerTheme();
+    widget.opponent.updatePlayedThemes(widget.theme);
+  }
 
   bool _isNotPlayedRound(List<dynamic> winners) => winners.isEmpty;
 
@@ -89,6 +114,13 @@ class BetweenRoundsPageState extends State<BetweenRoundsPage> with RouteAware {
     }
   }
 
+  void _onEndGameButtonPressed(BuildContext context) => Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => EndGamePage(winners: _calculateGameWinner()),
+    ),
+  );
+
   void _onNextRoundButtonPressed(BuildContext context) => Navigator.push(
     context,
     MaterialPageRoute(
@@ -103,6 +135,38 @@ class BetweenRoundsPageState extends State<BetweenRoundsPage> with RouteAware {
             ),
     ),
   );
+
+  List<String> _calculateGameWinner() {
+    int myWinnerRounds = 0;
+    int opponentWinnerRounds = 0;
+    for (Map<String, Object> roundHistory in winnerHistory) {
+      List<String> winners = roundHistory["winners"] as List<String>;
+      if (winners.length == 2) {
+        myWinnerRounds++;
+        opponentWinnerRounds++;
+      } else {
+        if (winners.length == 1) {
+          if (winners[0] == "me") {
+            myWinnerRounds++;
+          }
+          if (winners[0] == "opponent") {
+            opponentWinnerRounds++;
+          }
+        }
+      }
+    }
+    if (myWinnerRounds == 0 && opponentWinnerRounds == 0) {
+      return [];
+    }
+    if (myWinnerRounds == opponentWinnerRounds) {
+      return ["me", "opponent"];
+    }
+    if (myWinnerRounds > opponentWinnerRounds) {
+      return ["me"];
+    } else {
+      return ["opponent"];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,14 +183,14 @@ class BetweenRoundsPageState extends State<BetweenRoundsPage> with RouteAware {
               ),
             ),
 
-            ...status.map((status) {
+            ...winnerHistory.map((history) {
               CardColors meCardColors = _calculateMeColors(
-                status["name"] as String,
-                status["winners"] as List<dynamic>,
+                history["name"] as String,
+                history["winners"] as List<dynamic>,
               );
               CardColors opponentCardColors = _calculateOpponentColors(
-                status["name"] as String,
-                status["winners"] as List<dynamic>,
+                history["name"] as String,
+                history["winners"] as List<dynamic>,
               );
 
               return Container(
@@ -136,7 +200,7 @@ class BetweenRoundsPageState extends State<BetweenRoundsPage> with RouteAware {
                     Container(
                       margin: EdgeInsets.only(left: 30),
                       child: Text(
-                        status["name"] as String,
+                        history["name"] as String,
                         style: TextStyle(fontSize: 25),
                       ),
                     ),
@@ -189,28 +253,17 @@ class BetweenRoundsPageState extends State<BetweenRoundsPage> with RouteAware {
                 ),
               );
             }),
-            Container(
-              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 30.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => _onNextRoundButtonPressed(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 137, 187, 116),
-                    foregroundColor: Colors.white,
-                    textStyle: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    padding: const EdgeInsets.only(top: 15, bottom: 15),
+            widget.roundIndex < 5
+                ? NextRoundButton(
+                    buttonLabel: t.between_rounds_page.next_round_label,
+                    onNextRoundButtonPressed: () =>
+                        _onNextRoundButtonPressed(context),
+                  )
+                : NextRoundButton(
+                    buttonLabel: t.between_rounds_page.end_game_label,
+                    onNextRoundButtonPressed: () =>
+                        _onEndGameButtonPressed(context),
                   ),
-                  child: Text('Manche suivante'),
-                ),
-              ),
-            ),
           ],
         ),
       ),

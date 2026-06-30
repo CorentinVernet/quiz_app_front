@@ -101,6 +101,7 @@ class GamePageState extends State<GamePage> {
             context,
             MaterialPageRoute(
               builder: (context) => BetweenRoundsPage(
+                theme: widget.theme,
                 opponent: widget.opponent,
                 isMyTurnToChooseTheme: widget.isMyTurnToChooseTheme,
                 roundIndex: widget.roundIndex,
