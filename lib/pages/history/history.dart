@@ -22,22 +22,38 @@ class _HistoryState extends State<History> {
   ];
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    body: SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            HistoryLabel(),
-
-            ...historyItems.map(
-              (historyCard) => HistoryCard(
-                cardsColor: historyCard["color"] as Color,
-                theme: historyCard["name"] as String,
-              ),
-            ),
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.fromARGB(226, 96, 71, 219),
+            Color.fromARGB(92, 100, 231, 148),
           ],
         ),
       ),
-    ),
-  );
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                HistoryLabel(),
+
+                ...historyItems.map(
+                  (historyCard) => HistoryCard(
+                    cardsColor: historyCard["color"] as Color,
+                    theme: historyCard["name"] as String,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
