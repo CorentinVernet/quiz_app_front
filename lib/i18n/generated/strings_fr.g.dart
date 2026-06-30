@@ -105,9 +105,17 @@ class Translations$settings_page$fr {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+	late final Translations$settings_page$languages$fr languages = Translations$settings_page$languages$fr._(_root);
 
 	/// fr: 'Paramètres'
 	String get settings_page_label => 'Paramètres';
+
+	/// fr: 'Français'
+	String get selected_language => 'Français';
+
+	late final Translations$settings_page$general_section$fr general_section = Translations$settings_page$general_section$fr._(_root);
+	late final Translations$settings_page$appearance_section$fr appearance_section = Translations$settings_page$appearance_section$fr._(_root);
+	late final Translations$settings_page$account_section$fr account_section = Translations$settings_page$account_section$fr._(_root);
 }
 
 // Path: sing_in_page
@@ -312,6 +320,93 @@ class Translations$shared$fr {
 	String get welcome_label => 'Bienvenue sur Qwiz !';
 }
 
+// Path: settings_page.languages
+class Translations$settings_page$languages$fr {
+	Translations$settings_page$languages$fr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Anglais'
+	String get english => 'Anglais';
+
+	/// fr: 'Français'
+	String get french => 'Français';
+
+	/// fr: 'Allemand'
+	String get german => 'Allemand';
+
+	/// fr: 'Italien'
+	String get italian => 'Italien';
+
+	/// fr: 'Espagnol'
+	String get spanish => 'Espagnol';
+
+	/// fr: 'Russe'
+	String get russian => 'Russe';
+
+	/// fr: 'Arabe'
+	String get arabic => 'Arabe';
+}
+
+// Path: settings_page.general_section
+class Translations$settings_page$general_section$fr {
+	Translations$settings_page$general_section$fr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Général'
+	String get title => 'Général';
+
+	/// fr: 'Langues'
+	String get language_section => 'Langues';
+
+	/// fr: 'Choisir une langue'
+	String get choose_language_popup => 'Choisir une langue';
+
+	/// fr: 'Notifications'
+	String get notification => 'Notifications';
+
+	/// fr: 'Alerts, sounds, badges'
+	String get notification_description => 'Alerts, sounds, badges';
+}
+
+// Path: settings_page.appearance_section
+class Translations$settings_page$appearance_section$fr {
+	Translations$settings_page$appearance_section$fr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Apparence'
+	String get title => 'Apparence';
+
+	/// fr: 'Mode sombre'
+	String get dark_mode_section => 'Mode sombre';
+}
+
+// Path: settings_page.account_section
+class Translations$settings_page$account_section$fr {
+	Translations$settings_page$account_section$fr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// fr: 'Compte'
+	String get title => 'Compte';
+
+	/// fr: 'Changer d'email'
+	String get change_email_section => 'Changer d\'email';
+
+	/// fr: 'Se déconnecter'
+	String get sign_out_section => 'Se déconnecter';
+}
+
 // Path: sing_in_page.error_labels
 class Translations$sing_in_page$error_labels$fr {
 	Translations$sing_in_page$error_labels$fr._(this._root);
@@ -421,7 +516,25 @@ extension on Translations {
 			'history_page.history_label' => 'Historique des parties',
 			'profile_page.my_profile' => 'Mon profil',
 			'profile_page.user_name' => 'Nom d\'utilisateur',
+			'settings_page.languages.english' => 'Anglais',
+			'settings_page.languages.french' => 'Français',
+			'settings_page.languages.german' => 'Allemand',
+			'settings_page.languages.italian' => 'Italien',
+			'settings_page.languages.spanish' => 'Espagnol',
+			'settings_page.languages.russian' => 'Russe',
+			'settings_page.languages.arabic' => 'Arabe',
 			'settings_page.settings_page_label' => 'Paramètres',
+			'settings_page.selected_language' => 'Français',
+			'settings_page.general_section.title' => 'Général',
+			'settings_page.general_section.language_section' => 'Langues',
+			'settings_page.general_section.choose_language_popup' => 'Choisir une langue',
+			'settings_page.general_section.notification' => 'Notifications',
+			'settings_page.general_section.notification_description' => 'Alerts, sounds, badges',
+			'settings_page.appearance_section.title' => 'Apparence',
+			'settings_page.appearance_section.dark_mode_section' => 'Mode sombre',
+			'settings_page.account_section.title' => 'Compte',
+			'settings_page.account_section.change_email_section' => 'Changer d\'email',
+			'settings_page.account_section.sign_out_section' => 'Se déconnecter',
 			'sing_in_page.error_labels.missing_account' => 'Compte introuvable',
 			'sing_in_page.error_labels.incorrect_password' => 'Mot de passe incorect',
 			'sing_in_page.error_labels.missing_credentials' => 'Informations manquantes',

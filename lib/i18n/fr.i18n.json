@@ -11,7 +11,33 @@
     "user_name": "Nom d'utilisateur"
   },
   "settings_page": {
-    "settings_page_label": "Paramètres"
+    "languages": {
+      "english": "Anglais",
+      "french": "Français",
+      "german": "Allemand",
+      "italian": "Italien",
+      "spanish": "Espagnol",
+      "russian": "Russe",
+      "arabic": "Arabe"
+    },
+    "settings_page_label": "Paramètres",
+    "selected_language": "Français",
+    "general_section": {
+      "title": "Général",
+      "language_section": "Langues",
+      "choose_language_popup": "Choisir une langue",
+      "notification": "Notifications",
+      "notification_description": "Alerts, sounds, badges"
+    },
+    "appearance_section": {
+      "title": "Apparence",
+      "dark_mode_section": "Mode sombre"
+    },
+    "account_section": {
+      "title": "Compte",
+      "change_email_section": "Changer d'email",
+      "sign_out_section": "Se déconnecter"
+    }
   },
   "sing_in_page": {
     "error_labels": {
