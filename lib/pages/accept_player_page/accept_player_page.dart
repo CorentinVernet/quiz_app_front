@@ -9,6 +9,7 @@ import 'package:quiz_app_front/pages/accept_player_page/widgets/bottom_navigatio
 import 'package:quiz_app_front/pages/choose_first_player_page/choose_first_player_page.dart';
 import 'package:quiz_app_front/pages/matchmaking_page/matchmaking_page.dart';
 import 'package:quiz_app_front/pages/matchmaking_page/models/player.dart';
+import 'package:quiz_app_front/shared_assets/themes.dart';
 
 import '../../shared_models/theme.dart';
 
@@ -37,9 +38,9 @@ class AcceptPlayerPage extends StatelessWidget {
 
   String _displayAccuracyPerTheme() {
     String result = "";
-    for (Theme theme in Theme.values) {
+    for (Theme theme in themes) {
       result +=
-          '$theme: ${(opponent.accuracyPerTheme[theme]! * 100).toInt()}%\n';
+          '$theme: ${(opponent.accuracyPerTheme[theme.value]! * 100).toInt()}%\n';
     }
     return result;
   }

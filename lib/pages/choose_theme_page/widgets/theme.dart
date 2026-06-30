@@ -1,24 +1,18 @@
 import "package:flutter/material.dart";
-import "package:quiz_app_front/pages/game_page/game_page.dart";
 
 class Theme extends StatelessWidget {
   final Color themeColor;
   final String themeName;
   final String roundName;
+  final void Function() onThemePressed;
 
   const Theme({
     super.key,
     required this.themeName,
     required this.roundName,
     required this.themeColor,
+    required this.onThemePressed,
   });
-
-  void _onThemePressed(BuildContext context) => {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => GamePage(roundName: roundName)),
-    ),
-  };
 
   @override
   Widget build(BuildContext context) => Container(
@@ -28,6 +22,7 @@ class Theme extends StatelessWidget {
       child: Card(
         color: themeColor,
         child: InkWell(
+          onTap: onThemePressed,
           child: Padding(
             padding: EdgeInsets.all(20),
             child: Text(
@@ -36,7 +31,6 @@ class Theme extends StatelessWidget {
               style: TextStyle(fontSize: 30, color: Colors.white),
             ),
           ),
-          onTap: () => _onThemePressed(context),
         ),
       ),
     ),

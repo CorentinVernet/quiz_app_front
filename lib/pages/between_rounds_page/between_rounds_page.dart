@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app_front/pages/game_page/game_page.dart';
+import 'package:quiz_app_front/pages/matchmaking_page/models/player.dart';
+import 'package:quiz_app_front/pages/waiting_for_theme_page/waiting_for_theme_page.dart';
 
 class CardColors {
   final Color textColor;
@@ -12,7 +13,9 @@ class CardColors {
 }
 
 class BetweenRoundsPage extends StatefulWidget {
-  const BetweenRoundsPage({super.key});
+  final Player opponent;
+
+  const BetweenRoundsPage({super.key, required this.opponent});
 
   @override
   State<StatefulWidget> createState() => BetweenRoundsPageState();
@@ -168,7 +171,8 @@ class BetweenRoundsPageState extends State<BetweenRoundsPage> with RouteAware {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => GamePage(roundName: ""),
+                        builder: (context) =>
+                            WaitingForThemePage(opponent: widget.opponent),
                       ),
                     ),
                   },

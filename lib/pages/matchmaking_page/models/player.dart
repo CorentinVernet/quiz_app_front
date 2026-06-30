@@ -1,4 +1,9 @@
+import 'package:quiz_app_front/shared_assets/themes.dart';
+
 import '../../../shared_models/theme.dart';
+import "dart:math";
+
+Random _random = Random();
 
 class Player {
   final String name;
@@ -29,9 +34,9 @@ class Player {
   Theme calculatePreferedTheme() {
     int localMax = 0;
     // If the player never played any game, then Initialize their prefered theme to a random one, like biology here.
-    Theme preferedTheme = Theme.biology;
+    Theme preferedTheme = defaultTheme;
 
-    for (Theme theme in Theme.values) {
+    for (Theme theme in themes) {
       int playedOccurrences = playedThemeOccurrences[theme]!;
       if (playedOccurrences > localMax) {
         localMax = playedOccurrences;
@@ -41,12 +46,25 @@ class Player {
     return preferedTheme;
   }
 
+  Theme chooseTheme() {
+    // If the player never played any game, then Initialize their prefered theme to a random one, like biology here.
+    double accuracyOnCurrentTheme = 0;
+    List<Theme> chosenThemes = [];
+    for (Theme theme in themes) {
+      accuracyOnCurrentTheme = (accuracyPerTheme[theme] ?? 0);
+      if (_random.nextDouble() < accuracyOnCurrentTheme) {
+        chosenThemes.add(theme);
+      }
+    }
+    return chosenThemes[_random.nextInt(chosenThemes.length)];
+  }
+
   void addAccuracyEntryToATheme(Theme theme, double newAccuracy) =>
       historyOfAccuracyPerGame[theme] = (historyOfAccuracyPerGame[theme] ?? [])
         ..add(newAccuracy);
 
   void updateAverageAccuracyPerTheme() {
-    for (Theme theme in Theme.values) {
+    for (Theme theme in themes) {
       double summedAccuraciesOnCurrentTheme =
           (historyOfAccuracyPerGame[theme] ?? []).reduce(
             (total, accuracy) => total + accuracy,

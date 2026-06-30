@@ -1,13 +1,16 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Theme;
 import 'package:quiz_app_front/main.dart';
+import 'package:quiz_app_front/pages/matchmaking_page/models/player.dart';
 import "../../i18n/generated/strings.g.dart";
 import 'package:quiz_app_front/pages/game_page/game_page.dart';
 import 'package:quiz_app_front/pages/waiting_for_theme_page/widgets/waiting_icon.dart';
 import 'package:quiz_app_front/pages/waiting_for_theme_page/widgets/waiting_for_theme_label.dart';
 
 class WaitingForThemePage extends StatefulWidget {
-  const WaitingForThemePage({super.key});
+  final Player opponent;
+
+  const WaitingForThemePage({super.key, required this.opponent});
 
   @override
   State<StatefulWidget> createState() => WaitingForThemePageState();
@@ -20,8 +23,11 @@ class WaitingForThemePageState extends State<WaitingForThemePage>
   Timer _setTimer() => Timer(const Duration(seconds: 3), () {
     navigatorKey.currentState?.push(
       MaterialPageRoute(
-        builder: (_) =>
-            GamePage(roundName: t.shared.round_names.first_round_name),
+        builder: (_) => GamePage(
+          opponent: widget.opponent,
+          roundName: t.shared.round_names.first_round_name,
+          theme: widget.opponent.chooseTheme(),
+        ),
       ),
     );
   });

@@ -1,17 +1,27 @@
 //import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Theme;
 import 'package:quiz_app_front/pages/game_page/models/question.dart';
 import 'package:quiz_app_front/pages/game_page/assets/questions.dart';
 import 'package:quiz_app_front/pages/game_page/widgets/question_label.dart';
 import 'package:quiz_app_front/pages/game_page/widgets/round_name_label.dart';
 import 'package:quiz_app_front/pages/game_page/widgets/answer_suggestion.dart';
 import 'package:quiz_app_front/pages/between_rounds_page/between_rounds_page.dart';
+import 'package:quiz_app_front/pages/matchmaking_page/models/player.dart';
+
+import '../../shared_models/theme.dart';
 
 class GamePage extends StatefulWidget {
+  final Theme theme;
   final String roundName;
+  final Player opponent;
 
-  const GamePage({super.key, required this.roundName});
+  const GamePage({
+    super.key,
+    required this.roundName,
+    required this.theme,
+    required this.opponent,
+  });
 
   @override
   State<StatefulWidget> createState() => GamePageState();
@@ -54,7 +64,10 @@ class GamePageState extends State<GamePage> {
         } else {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => BetweenRoundsPage()),
+            MaterialPageRoute(
+              builder: (context) =>
+                  BetweenRoundsPage(opponent: widget.opponent),
+            ),
           );
         }
       });
