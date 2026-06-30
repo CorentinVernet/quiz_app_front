@@ -79,8 +79,8 @@ class Translations$history_page$fr {
 
 	// Translations
 
-	/// fr: 'Historique'
-	String get history_label => 'Historique';
+	/// fr: 'Historique des parties'
+	String get history_label => 'Historique des parties';
 }
 
 // Path: profile_page
@@ -418,7 +418,7 @@ extension on Translations {
 		return switch (path) {
 			'home_page.new_game' => 'Nouvelle partie',
 			'home_page.run_game' => 'Lancer une nouvelle partie',
-			'history_page.history_label' => 'Historique',
+			'history_page.history_label' => 'Historique des parties',
 			'profile_page.my_profile' => 'Mon profil',
 			'profile_page.user_name' => 'Nom d\'utilisateur',
 			'settings_page.settings_page_label' => 'Paramètres',

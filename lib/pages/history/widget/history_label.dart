@@ -5,8 +5,11 @@ class HistoryLabel extends StatelessWidget {
   const HistoryLabel({super.key});
 
   @override
-  Widget build(BuildContext context) => Text(
-    t.history_page.history_label,
-    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+  Widget build(BuildContext context) => Container(
+    margin: EdgeInsets.only(top: 20, bottom: 50),
+    child: Text(
+      t.history_page.history_label,
+      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    ),
   );
 }
